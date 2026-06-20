@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EC2 DevOps Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    background: #020617;
+    color: #22c55e;
+    font-family: monospace;
+}
+
+.header {
+    background: #000;
+    padding: 12px;
+    text-align: center;
+    color: #38bdf8;
+    border-bottom: 1px solid #22c55e;
+    font-size: 18px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
+
+.box {
+    border: 1px solid #22c55e;
+    padding: 12px;
+    background: rgba(0,0,0,0.7);
+}
+
+.title {
+    color: #38bdf8;
+    border-bottom: 1px solid #22c55e;
+    margin-bottom: 8px;
+}
+
+pre {
+    font-size: 13px;
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+🚀 EC2 DEVOPS DASHBOARD <span class="blink">█</span>
+</div>
+
+<div class="container">
+
+<div class="box">
+<div class="title">SYSTEM INFO</div>
+<p>Server: EC2 Instance</p>
+<p>IP: <span id="ip"></span></p>
+<p>Time: <span id="time"></span></p>
+</div>
+
+<div class="box">
+<div class="title">RESOURCE USAGE</div>
+<p>CPU: <span id="cpu"></span>%</p>
+<p>RAM: <span id="ram"></span>%</p>
+<p>Status: ACTIVE</p>
+</div>
+
+<div class="box">
+<div class="title">NETWORK</div>
+<p>Inbound: OK</p>
+<p>Outbound: OK</p>
+<p>Latency: 10ms</p>
+</div>
+
+<div class="box">
+<div class="title">SYSTEM LOGS</div>
+<pre id="logs"></pre>
+</div>
+
+</div>
+
+<script>
+function update() {
+    document.getElementById("ip").innerText = window.location.hostname;
+    document.getElementById("time").innerText = new Date().toLocaleString();
+
+    let cpu = Math.floor(Math.random()*100);
+    let ram = Math.floor(Math.random()*100);
+
+    document.getElementById("cpu").innerText = cpu;
+    document.getElementById("ram").innerText = ram;
+
+    document.getElementById("logs").innerText =
+        "[OK] Server started\n" +
+        "[INFO] Apache running\n" +
+        "[INFO] Monitoring active\n" +
+        "[OK] No issues detected\n" +
+        "[RUNNING] System stable...";
+}
+
+setInterval(update, 2000);
+update();
+</script>
+
+</body>
+</html>
