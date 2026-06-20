@@ -31,7 +31,7 @@ A simple and responsive DevOps-style dashboard that displays system-like metrics
 
 ## 🌐 Live Demo
 
-Hosted on AWS EC2 instance (Public IP based access)
+http://13.201.94.124
 
 ## 👩‍💻 Author
 
