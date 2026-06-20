@@ -6,48 +6,57 @@
 <style>
 body {
     margin: 0;
-    background: #020617;
-    color: #22c55e;
+    background: #0b1220;
+    color: #00ff99;
     font-family: monospace;
 }
 
+/* HEADER */
 .header {
     background: #000;
-    padding: 12px;
+    padding: 15px;
     text-align: center;
+    font-size: 20px;
     color: #38bdf8;
-    border-bottom: 1px solid #22c55e;
-    font-size: 18px;
+    border-bottom: 2px solid #00ff99;
 }
 
+/* GRID */
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 15px;
     padding: 15px;
 }
 
-.box {
-    border: 1px solid #22c55e;
-    padding: 12px;
-    background: rgba(0,0,0,0.7);
+/* CARD */
+.card {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #00ff99;
+    padding: 15px;
+    border-radius: 8px;
 }
 
+/* TITLE */
 .title {
     color: #38bdf8;
-    border-bottom: 1px solid #22c55e;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #00ff99;
+    padding-bottom: 5px;
 }
 
-pre {
-    font-size: 13px;
-}
-
-.blink {
+/* LIVE DOT */
+.live {
+    color: red;
     animation: blink 1s infinite;
 }
 @keyframes blink {
     50% { opacity: 0; }
+}
+
+pre {
+    font-size: 13px;
+    white-space: pre-wrap;
 }
 </style>
 
@@ -56,33 +65,33 @@ pre {
 <body>
 
 <div class="header">
-🚀 EC2 DEVOPS DASHBOARD <span class="blink">█</span>
+🚀 EC2 DEVOPS DASHBOARD <span class="live">● LIVE</span>
 </div>
 
 <div class="container">
 
-<div class="box">
+<div class="card">
 <div class="title">SYSTEM INFO</div>
 <p>Server: EC2 Instance</p>
 <p>IP: <span id="ip"></span></p>
 <p>Time: <span id="time"></span></p>
 </div>
 
-<div class="box">
-<div class="title">RESOURCE USAGE</div>
-<p>CPU: <span id="cpu"></span>%</p>
-<p>RAM: <span id="ram"></span>%</p>
-<p>Status: ACTIVE</p>
+<div class="card">
+<div class="title">RESOURCE METRICS</div>
+<p>CPU Usage: <span id="cpu"></span>%</p>
+<p>RAM Usage: <span id="ram"></span>%</p>
+<p>Status: RUNNING</p>
 </div>
 
-<div class="box">
-<div class="title">NETWORK</div>
-<p>Inbound: OK</p>
-<p>Outbound: OK</p>
-<p>Latency: 10ms</p>
+<div class="card">
+<div class="title">NETWORK STATUS</div>
+<p>Inbound Traffic: OK</p>
+<p>Outbound Traffic: OK</p>
+<p>Latency: Stable</p>
 </div>
 
-<div class="box">
+<div class="card">
 <div class="title">SYSTEM LOGS</div>
 <pre id="logs"></pre>
 </div>
@@ -90,26 +99,25 @@ pre {
 </div>
 
 <script>
-function update() {
+function updateDashboard() {
+    let cpu = Math.floor(Math.random() * 40 + 10);
+    let ram = Math.floor(Math.random() * 50 + 20);
+
     document.getElementById("ip").innerText = window.location.hostname;
     document.getElementById("time").innerText = new Date().toLocaleString();
-
-    let cpu = Math.floor(Math.random()*100);
-    let ram = Math.floor(Math.random()*100);
-
     document.getElementById("cpu").innerText = cpu;
     document.getElementById("ram").innerText = ram;
 
     document.getElementById("logs").innerText =
-        "[OK] Server started\n" +
-        "[INFO] Apache running\n" +
-        "[INFO] Monitoring active\n" +
-        "[OK] No issues detected\n" +
-        "[RUNNING] System stable...";
+`[INFO] Server running
+[INFO] Apache active
+[INFO] Monitoring system
+[OK] No issues detected
+[RUNNING] EC2 instance stable`;
 }
 
-setInterval(update, 2000);
-update();
+setInterval(updateDashboard, 2000);
+updateDashboard();
 </script>
 
 </body>
