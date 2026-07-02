@@ -31,7 +31,7 @@ A simple and responsive DevOps-style dashboard that displays system-like metrics
 
 ## 🌐 Live Demo
 
-13.207.204.13
+http://13.207.204.13
 
 ## 👩‍💻 Author
 
